@@ -1,10 +1,19 @@
 import itertools
 
 def word_to_number(word, mapping):
+    """Преобразовать слово в число на основе заданного сопоставления."""
     return int(''.join(str(mapping[char]) for char in word))
 
+def print_mapping(mapping):
+    """Вывести сопоставление букв и цифр в понятном формате."""
+    for char, num in sorted(mapping.items()):
+        print(f"{char} -> {num}")
+
 def main():
-    unique_chars = set('ХРУСТГРОХОРРРРРРРР')
+    # Вводим слова для замены
+    words = ['ХРУСТ', 'ГРОХОТ', 'РРРРРРРРРР']
+    unique_chars = set(''.join(words))
+    
     if len(unique_chars) > 10:
         print("Слишком много уникальных букв для замены цифрами.")
         return
@@ -21,7 +30,9 @@ def main():
         rrrrrrrrrr = word_to_number('РРРРРРРРРР', mapping)
 
         if xrust * grokhot == rrrrrrrrrr:
-            print(f"Найдено решение: {mapping}")
+            print("Найдено решение:")
+            print_mapping(mapping)
+            print(f"ХРУСТ = {xrust}, ГРОХОТ = {grokhot}, РРРРРРРРРР = {rrrrrrrrrr}")
             return
     
     print("Решение не найдено.")
